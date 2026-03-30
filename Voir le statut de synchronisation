@@ -1,0 +1,5 @@
+# Voir le statut de synchronisation
+$wsus = [Microsoft.UpdateServices.Administration.AdminProxy]::GetUpdateServer('WSUS-SRV', $false, 8530)
+$sub = $wsus.GetSubscription()
+$sub.GetSynchronizationStatus()
+$sub.GetSynchronizationHistory() | Select-Object -First 5
