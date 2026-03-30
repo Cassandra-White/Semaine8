@@ -1,0 +1,9 @@
+# Forcer la mise à jour des GPO sur un ordinateur distant
+Invoke-GPUpdate -Computer "NOM-PC-CLIENT" -Force -RandomDelayInMinutes 0
+
+# Forcer sur plusieurs ordinateurs
+$computers = @("CLIENT-PC1", "DC1", "DC2", "WSUS-SRV")
+foreach ($pc in $computers) {
+    Write-Host "Mise à jour GPO sur $pc..."
+    Invoke-GPUpdate -Computer $pc -Force -RandomDelayInMinutes 0 2>&1
+}
