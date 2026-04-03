@@ -20,3 +20,9 @@ dir \\FS-BILLU\Partage-Commun
 
 # Activer le chiffrement SMB pour sécuriser les transferts
 Set-SmbShare -Name "Partage-Commun" -EncryptData $true
+
+
+# Ajouter le groupe local EcoTech-Admins dans le groupe AD GRP-FS-EcoTech-Admins
+Add-ADGroupMember `
+    -Identity "GRP-FS-EcoTech-Admins" `
+    -Members (Get-ADComputer "FS-BILLU")
