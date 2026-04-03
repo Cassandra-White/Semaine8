@@ -1,0 +1,22 @@
+# Créer le partage principal
+New-SmbShare `
+    -Name "Partage-Commun" `
+    -Path "D:\Partages" `
+    -Description "Dossiers partagés BillU et EcoTechSolutions" `
+    -FullAccess "Everyone" `
+    -FolderEnumerationMode "AccessBased"
+
+# Voir tous les partages du serveur
+Get-SmbShare
+
+# Voir les détails du partage
+Get-SmbShare -Name "Partage-Commun"
+
+# Voir les permissions du partage
+Get-SmbShareAccess -Name "Partage-Commun"
+
+# Accéder au partage depuis le serveur lui-même (loopback)
+dir \\FS-BILLU\Partage-Commun
+
+# Activer le chiffrement SMB pour sécuriser les transferts
+Set-SmbShare -Name "Partage-Commun" -EncryptData $true
